@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { medicineCategoryService } from "./medicineCategory.service";
-import { AppError } from "../../errors/AppError";
+
 
 
 const createCategory = async (

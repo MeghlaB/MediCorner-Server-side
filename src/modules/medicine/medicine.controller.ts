@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { medicineServices } from "./medicine.service";
-import { AppError } from "../../errors/AppError";
+
 
 
 const createMedicine = async (req: Request, res: Response, next: NextFunction) => {
