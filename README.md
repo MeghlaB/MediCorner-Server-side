@@ -8,7 +8,7 @@ It provides a seamless experience for customers, sellers, and administrators.
 
 ## 🌐 Live Demo
 🔗 Client:(https://medicorner-three.vercel.app/)
-🔗 Server: (https://drawsql.app/teams/x-449/diagrams/medicorner)
+🔗 Server: (https://medistore-ten.vercel.app/)
 
 ---
 
