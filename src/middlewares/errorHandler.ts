@@ -48,7 +48,7 @@ const errorHandler = (
         message = "Database engine crashed";
     }
 
-    // Prisma Init Error
+    // Prisma Init Error 
     else if (error instanceof Prisma.PrismaClientInitializationError) {
         if (error.errorCode === "P1000") {
             statusCode = 401;
