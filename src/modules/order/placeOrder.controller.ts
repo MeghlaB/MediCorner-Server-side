@@ -3,7 +3,6 @@ import { OrderServices, getAllOrdersAdmin, updateSellerBatchStatus } from './pla
 
 import { OrderStatus } from '../../../generated/prisma/enums';
 import { AppError } from '../../errors/AppError';
-// import { OrderServices } from './order.service';
 
 
 
