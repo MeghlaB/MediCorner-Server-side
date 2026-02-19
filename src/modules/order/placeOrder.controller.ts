@@ -18,10 +18,6 @@ const placeOrder = async (req: Request, res: Response, next: NextFunction) => {
 
         const payload = req.body;
 
-        // if (!payload?.cartId) {
-        //     throw new AppError(400, 'Cart ID is required');
-        // }
-
         const result = await OrderServices.placeOrder(userId, payload);
         res.status(result.statusCode).json(result);
     } catch (error) {
