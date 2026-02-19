@@ -5,55 +5,55 @@ import { prisma } from "./prisma";
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, 
-    auth: {
-        user: process.env.APP_USER,
-        pass: process.env.APP_PASS
-    }
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.APP_USER,
+    pass: process.env.APP_PASS
+  }
 });
 
 export const auth = betterAuth({
-    database: prismaAdapter(prisma, {
-        provider: "postgresql",
-    }),
-    trustedOrigins: [process.env.APP_URL!],
-    emailAndPassword: {
-        enabled: true,
-        autoSignIn: false,
-        requireEmailVerification: false
-    },
-    user: {
-        additionalFields: {
-            role: {
-                type: "string",
-                default: "CUSTOMER",
-                required: false
-            },
-            status: {
-                type: "string",
-                default: "ACTIVE",
-                required: false
-            },
-            phone: {
-                type: "string",
-                required: false
-            }
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
+  }),
+  trustedOrigins: [process.env.APP_URL!],
+  emailAndPassword: {
+    enabled: true,
+    autoSignIn: false,
+    requireEmailVerification: false
+  },
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        default: "CUSTOMER",
+        required: false
+      },
+      status: {
+        type: "string",
+        default: "ACTIVE",
+        required: false
+      },
+      phone: {
+        type: "string",
+        required: false
+      }
 
-        }
-    },
-    emailVerification: {
-        sendOnSignUp: true,
-        autoSignInAfterVerification: true,
-        sendVerificationEmail: async ({ user, url, token }, request) => {
-            try {
-                const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`
-                const info = await transporter.sendMail({
-                    from: '"MediCorner" <medicroner@gmail.com>',
-                    to: user.email,
-                    subject: "Please verify email",
-                    html: `
+    }
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url, token }, request) => {
+      try {
+        const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`
+        const info = await transporter.sendMail({
+          from: '"MediCorner" <medicroner@gmail.com>',
+          to: user.email,
+          subject: "Please verify email",
+          html: `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,21 +140,21 @@ export const auth = betterAuth({
 </body>
 </html>
 `
-                })
+        })
 
-                console.log("Message sent:", info.messageId)
-            } catch (error: any) {
-                console.log({ error: error });
-                throw error;
-            }
-        },
+        console.log("Message sent:", info.messageId)
+      } catch (error: any) {
+        console.log({ error: error });
+        throw error;
+      }
     },
-    socialProviders: {
-        google: {
-            prompt: "select_account consent",
-            accessType: "offline",
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-        },
+  },
+  socialProviders: {
+    google: {
+      prompt: "select_account consent",
+      accessType: "offline",
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
+  },
 });
