@@ -44,9 +44,9 @@ const seedAdmin = async () => {
                     emailVerified: true
                 }
             })
-            console.log("***** Admin email verification status update *****");
+            console.log("******** Admin email verification status update ********");
         }
-        console.log('***** Success *****');
+        console.log('******* Success *******');
 
 
     } catch (error) {

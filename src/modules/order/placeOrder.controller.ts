@@ -24,7 +24,7 @@ const placeOrder = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-
+// ==============get my orders (customer) ================
 const getMyOrders = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.user?.id;
@@ -39,6 +39,7 @@ const getMyOrders = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+// ================ cancel order (customer) ================
 const cancelOrder = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = req.user?.id;
@@ -143,15 +144,6 @@ const getAllOrdersForAdmin = async (req: Request, res: Response, next: NextFunct
         next(error);
     }
 };
-
-// const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         const result = await OrderServices.getAllOrders();
-//         res.status(result.statusCode).json(result);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
 
 export const OrderController = {
     placeOrder,
